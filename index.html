@@ -103,20 +103,23 @@
 		<br> 
 		<p>  
 			Huaifeng Zhang <sup>1</sup>, 
-			Tingting Lv <sup>1</sup>, 
+			Yong Gao<sup>2</sup>, 
+			Guigeng Li<sup>1</sup>, 
+			Zhen Wang <sup>1</sup>, 
+			Hao Zhang<sup>1*</sup>,
 <!-- 			Wenbin Jiang<sup>2</sup>,  -->
 <!-- 			Guigeng Li<sup>1</sup>,  -->
 <!-- 			Peifei Wu<sup>1</sup>,  -->
 <!-- 			Yong Gao<sup>2</sup>,  -->
 <!-- 			Tianpei Liu<sup>3</sup>,  -->
-			Hao Zhang<sup>1*</sup>,
+<!-- 			Hao Zhang<sup>1*</sup>, -->
 		</p>  
 		<p>  
 			<sup>1</sup>College of Electronic Engineerin, Ocean University of China, QingDao, 266100, China 
 		</p>  
 		<p >
-<!-- 			<sup>2</sup>College of Shipbuilding Engineering, Qingdao Innovation and Development Base of Harbin Engineering University, QingDao, 266000, China
-		</p>   -->
+			<sup>2</sup>College of Shipbuilding Engineering, Qingdao Innovation and Development Base of Harbin Engineering University, QingDao, 266000, China
+		</p>  
 <!-- 		<p >
 			<sup>3</sup>School of Automation (School of Artificial Intelligence), Hangzhou Dianzi University, HangZhou, 310018, China
 		</p>   -->
@@ -124,15 +127,17 @@
 	<p>
         <b>Abstract.</b>
 		<div class="justify-text">
-	Although GAN-based speech codecs achieve appreciable intelligibility and perceptual quality, the reconstruction of generated speech from discrete vectors in quantizers introduces phase mismatches imperceptible to human ears. 
-			These mismatches manifest as subtle waveform misalignments and hinder improvements in objective metrics, primarily due to the discrete nature of vector quantization. 
-			Inspired by the superior performance of diffusion models in speech enhancement, we innovatively reconstruct GAN-based codecs into a diffusion-based generative codec, termed Diffcodec. 
-			This model employs the U-Net network, commonly used in diffusion models, to predict the data probability distribution from decoded speech to original speech, mapping the training approximation process to the reverse denoising process in diffusion models. 
-			By introducing a loss function guided by data distribution gradients and eliminating traditional GAN loss functions, we transform adversarial training task into a pure generative task. 
-			Comparative experiments demonstrate that Diffcodec outperforms GAN-based counterparts in speech output quality, achieving a PESQ score of 3.57 and an SI-SDR of 7.0 dB. 
-			Further comparisons with traditional codecs (Lyra) and mainstream neural network codecs (SoundStream) confirm that Diffcodec maintains absolute advantages across low-bitrate scenarios.
+  			Although generative adversarial network (GAN)-based speech codecs achieve considerable intelligibility and perceptual quality, the inherent discrete nature of the quantization process inevitably introduces imperceptible phase distortions and spectral missing 
+			during the reconstruction of generated speech from discrete vectors. These distortions manifest as subtle waveform misalignments and hinder the improvement of objective metrics, all stemming from the incomplete mapping relationship from coding vectors to 
+			discrete vectors. Inspired by the superior performance of diffusion models in the field of speech enhancement, we innovatively reconstruct GAN-based codecs into a diffusion-based generative codec, termed Diffcodec. This model employs a U-Net network to model 
+			the data probability distribution from generated speech to original speech. Instead of forcing generated speech to gradually approximate original speech through feature constraints via discriminative adversarial learning, it learns the probability distribution 
+			from generated speech to original speech through a forward process and then recovers generated samples that are closest to the original speech via reverse denoising, innovatively transforming the adversarial training task into a generative task. To train 
+			multiple model variants, this paper also introduces a multi-stage training framework, which not only helps shorten the training time but also improves the output speech quality. This enables Diffcodec to provide a portable solution for generative tasks 
+			under different frameworks. Additionally, this paper introduces the concept of multi-resolution and applies it to speech reconstruction tasks, supplementing and improving spectral details at different scales, thus significantly enhancing the output speech 
+			quality. For better comparative appreciation, we implement multiple mainstream GAN-based model variants and multiple Diffcodec variants. Comparative experiments demonstrate that Diffcodec gains absolute advantages over GAN-based codecs in various aspects 
+			such as training time, training process, objective metrics, and spectral details, achieving a PESQ of 3.59, an ESTOI of 0.92, and a ViSQOL of 3.62. This confirms the innovation and superiority of applying diffusion models to the speech coding and decoding process.
 		</div>
-	<b>Keywords: speech codec; generative adversarial network; score-based generative model; diffusion model</b>
+	<b>Keywords: speech codec; generative adversarial network; schrödinger bridge; diffusion model; multi-resolution</b>
 		<br>
 <!-- 		<b>Update:</b> We release <b>the code and pre-trained checkpoint of FACodec </b> at <a href="https://huggingface.co/spaces/amphion/naturalspeech3_facodec">here</a> ! -->
 		<br>
@@ -718,3 +723,4 @@
 	</footer> -->
 </body>
 </html>
+
