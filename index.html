@@ -180,68 +180,102 @@
 		<div class="table-responsive pt-3" tabindex="0">
 			<table class="table table-hover pt-2">
 				<thead>
-					<tr class="bold-top-border">
-						<th style="text-align: center">Models</th>
-						<th style="text-align: center">Type</th>
-						<th style="text-align: center">Operation</th>
-					  	<th style="text-align: center">Train step(k)</th>
-						<th style="text-align: center">PESQ&uarr;</th>
-						<th style="text-align: center">ESTOI&uarr;</th>
-						<th style="text-align: center">SI-SDR&uarr;</th>
-						<th style="text-align: center">DNSMOS&uarr;</th>
-					</tr>
-				</thead>
-				<tbody>
-				<tr class="bold-top-border">
-					<td style="text-align: center;vertical-align:middle; width: 160px">Codec-v0</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">baseline</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">+(Mel-loss)</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">500</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">2.60</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">0.79</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">-22.01</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">3.08</td>
-					</tr>
-					<tr class="bold-top-border">
-					<td style="text-align: center;vertical-align:middle; width: 160px">Codec-v1</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">Multi-loss</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">+(Spectral\&Waveform loss)</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">500</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">2.56</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">0.81</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">-17.37</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">3.13</td>
-					</tr>
-					<tr>
-					<td style="text-align: center;vertical-align:middle; width: 160px">Codec-v2</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">GAN-based</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">+(MSD&MPD)</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">500</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">3.30</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">0.74</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">-15.47</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">3.33</td>
-					</tr>
-					<tr>
-					<td style="text-align: center;vertical-align:middle; width: 160px">Codec-v3</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">GAN-based</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">+(SpecD&WaveD)</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">500</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">3.26</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">0.75</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">-16.70</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">3.37</td>
-					</tr>
-					<tr>
-					<td style="text-align: center;vertical-align:middle; width: 160px">Diffcodec(ours)</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">Diffusion-based</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px">+(U-Net)</td>
-					<td style="text-align: center;vertical-align:middle; width: 160px"><b>200</b></td>
-					<td style="text-align: center;vertical-align:middle; width: 160px"><b>3.57</b></td>
-					<td style="text-align: center;vertical-align:middle; width: 160px"><b>0.92</b></td>
-					<td style="text-align: center;vertical-align:middle; width: 160px"><b>7.0</b></td>
-					<td style="text-align: center;vertical-align:middle; width: 160px"><b>3.48</b></td>
-					</tr>
+                    <tr class="bold-top-border">
+                        <th style="text-align: center;">Variants</th>
+                        <th style="text-align: center;">Generator</th>
+                        <th colspan="5" style="text-align: center;">Discriminators</th>
+                        <th colspan="2" style="text-align: center;">Diffusion</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>MPD</th>
+                        <th>MSD</th>
+                        <th>CSTFTD</th>
+                        <th>MRSTFTD</th>
+                        <th>MSSTFTD</th>
+                        <th>SGM</th>
+                        <th>SB</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GAN-v1</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                    </tr>
+                    <tr>
+                        <td>GAN-v2</td>
+                        <td>✔</td>
+                        <td>✖</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                    </tr>
+                    <tr>
+                        <td>GAN-v3</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✔</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                    </tr>
+                    <tr>
+                        <td>GAN-v4</td>
+                        <td>✔</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✔</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                    </tr>
+                    <tr>
+                        <td>GAN-v5</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✖</td>
+                        <td>✔</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                    </tr>
+                    <tr>
+                        <td>Diff-v1</td>
+                        <td>✔</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✔</td>
+                        <td>✖</td>
+                    </tr>
+                    <tr>
+                        <td>Diff-v2</td>
+                        <td>✔</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✖</td>
+                        <td>✔</td>
+                    </tr>
 					<tr class="bold-top-border">
 					</tr>
 				</tbody>
@@ -723,4 +757,5 @@
 	</footer> -->
 </body>
 </html>
+
 
