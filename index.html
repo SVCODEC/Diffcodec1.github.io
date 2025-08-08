@@ -106,6 +106,7 @@
 			Yong Gao<sup>2</sup>, 
 			Guigeng Li<sup>1</sup>, 
 			Zhen Wang <sup>1</sup>, 
+			Tingting Lv<sup>1*</sup>,
 			Hao Zhang<sup>1*</sup>,
 <!-- 			Wenbin Jiang<sup>2</sup>,  -->
 <!-- 			Guigeng Li<sup>1</sup>,  -->
@@ -127,15 +128,17 @@
 	<p>
         <b>Abstract.</b>
 		<div class="justify-text">
-  			Although generative adversarial network (GAN)-based speech codecs achieve considerable intelligibility and perceptual quality, the inherent discrete nature of the quantization process inevitably introduces imperceptible phase distortions and spectral missing 
-			during the reconstruction of generated speech from discrete vectors. These distortions manifest as subtle waveform misalignments and hinder the improvement of objective metrics, all stemming from the incomplete mapping relationship from coding vectors to 
-			discrete vectors. Inspired by the superior performance of diffusion models in the field of speech enhancement, we innovatively reconstruct GAN-based codecs into a diffusion-based generative codec, termed Diffcodec. This model employs a U-Net network to model 
-			the data probability distribution from generated speech to original speech. Instead of forcing generated speech to gradually approximate original speech through feature constraints via discriminative adversarial learning, it learns the probability distribution 
-			from generated speech to original speech through a forward process and then recovers generated samples that are closest to the original speech via reverse denoising, innovatively transforming the adversarial training task into a generative task. To train 
-			multiple model variants, this paper also introduces a multi-stage training framework, which not only helps shorten the training time but also improves the output speech quality. This enables Diffcodec to provide a portable solution for generative tasks 
-			under different frameworks. Additionally, this paper introduces the concept of multi-resolution and applies it to speech reconstruction tasks, supplementing and improving spectral details at different scales, thus significantly enhancing the output speech 
-			quality. For better comparative appreciation, we implement multiple mainstream GAN-based model variants and multiple Diffcodec variants. Comparative experiments demonstrate that Diffcodec gains absolute advantages over GAN-based codecs in various aspects 
-			such as training time, training process, objective metrics, and spectral details, achieving a PESQ of 3.59, an ESTOI of 0.92, and a ViSQOL of 3.62. This confirms the innovation and superiority of applying diffusion models to the speech coding and decoding process.
+  			Although generative adversarial network (GAN)-based speech codecs achieve considerable intelligibility and perceptual quality, the inherent discrete nature of the quantization process inevitably introduces imperceptible 
+			phase distortions and spectral gaps during the reconstruction of generated speech from discrete vectors. These distortions manifest as subtle waveform misalignments, hinder the improvement of objective metrics, and stem 
+			from an incomplete mapping from continuous coding vectors to discrete vectors. Inspired by the superior performance of diffusion models in speech enhancement, we innovatively reformulate GAN-based codecs as a 
+			diffusion-based generative codec, termed Diffcodec. This model employs a U-Net to model the data probability distribution from generated speech to original speech. Instead of forcing generated speech to gradually 
+			approximate original speech through feature constraints via discriminative adversarial learning, it learns the probability distribution from generated speech to original speech through a forward process and then recovers 
+			generated samples closest to the original speech via reverse denoising---innovatively transforming the adversarial training task into a generative task. To train multiple model variants, we also introduce a multi-stage 
+			training framework, which not only shortens training time but also improves output speech quality. This enables Diffcodec to provide a portable solution for generative tasks across different frameworks. Additionally, we 
+			introduce the concept of multi-resolution and apply it to speech reconstruction tasks, supplementing and improving spectral details at different scales, thereby significantly enhancing the output speech quality. For 
+			comprehensive comparative evaluation, we implement multiple mainstream GAN-based model variants and multiple Diffcodec variants. Comparative experiments demonstrate that Diffcodec exhibits absolute advantages over 
+			GAN-based codecs in various aspects such as training time, training stability, objective metrics, and spectral details, achieving a Perceptual Evaluation of Speech Quality (PESQ) of 3.59, an Extended Short-Time 
+			Objective Intelligibility (ESTOI) of 0.92, and a Virtual Speech Quality Objective Listener (ViSQOL) of 3.62. This confirms the innovation and superiority of applying diffusion models to the speech coding process.
 		</div>
 	<b>Keywords: speech codec; generative adversarial network; schrödinger bridge; diffusion model; multi-resolution</b>
 		<br>
@@ -153,14 +156,25 @@
 
 <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
 	<h2 id="model-overview" style="text-align: center;">
-		<span>Diffcodec Model Architecture</span>
+		<span>The model's training modes and the available portable solutions</span>
 	</h2>
 		<p style="text-align: center;">
-			<img src="pics/model.png" width="1000" alt="">
+			<img src="pics/model0808.png" width="1000" alt="">
 		</p>
-		<p style="text-align: center;">
+<!-- 		<p style="text-align: center;">
 		Structural topology of the Diffcodec model.
+		</p> -->
+</div>
+<div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+	<h2 id="model-overview" style="text-align: center;">
+		<span>Diffusion process based on the Schrödinger bridge</span>
+	</h2>
+		<p style="text-align: center;">
+			<img src="pics/SB.png" width="1000" alt="">
 		</p>
+<!-- 		<p style="text-align: center;">
+		Structural topology of the Diffcodec model.
+		</p> -->
 </div>
 
 <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
@@ -170,9 +184,9 @@
 		<p style="text-align: center;">
 			<img src="pics/unet.png" width="1000" alt="">
 		</p>
-		<p style="text-align: center;">
+<!-- 		<p style="text-align: center;">
 		Structural topology of the U-Net network.
-		</p>
+		</p> -->
 </div>
 
 <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
@@ -888,6 +902,7 @@
 	</footer> -->
 </body>
 </html>
+
 
 
 
